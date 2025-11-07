@@ -1,0 +1,54 @@
+# Time Series Analysis Configuration
+
+# Data settings
+data:
+  symbol: "TSLA"
+  start_date: "2020-01-01"
+  end_date: "2023-01-01"
+  sequence_length: 30
+  train_split: 0.8
+  validation_split: 0.1
+
+# Model settings
+models:
+  lstm:
+    hidden_size: 50
+    num_layers: 2
+    dropout: 0.2
+    learning_rate: 0.001
+    batch_size: 32
+    epochs: 100
+    early_stopping_patience: 10
+    
+  arima:
+    auto_arima: true
+    seasonal: true
+    stepwise: true
+    
+  prophet:
+    yearly_seasonality: true
+    weekly_seasonality: true
+    daily_seasonality: false
+    seasonality_mode: "multiplicative"
+
+# Anomaly detection
+anomaly_detection:
+  isolation_forest:
+    contamination: 0.1
+    random_state: 42
+  autoencoder:
+    encoding_dim: 10
+    learning_rate: 0.001
+    epochs: 50
+
+# Visualization
+visualization:
+  figure_size: [12, 8]
+  style: "seaborn-v0_8"
+  color_palette: "husl"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/timeseries.log"
